@@ -5,11 +5,6 @@ using Task1;
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     [Repeat(10)]
     public void IntList()
@@ -28,6 +23,26 @@ public class Tests
         
         list.Sort();
         bubbleSortedList.BubbleSort();
-        Assert.That(bubbleSortedList, Is.EquivalentTo(list));
+        Assert.That(bubbleSortedList, Is.EqualTo(list));
+    }
+    
+    [Test]
+    public void EmptyIntList()
+    {
+        var bubbleSortedList = new List<int>();
+        
+        bubbleSortedList.BubbleSort();
+        Assert.That(bubbleSortedList, Is.EqualTo(new List<int>()));
+    }
+    
+    [Test]
+    public void ReversedIntList()
+    {
+        var list = new List<int>() {7, 6, 5, 4, 3, 2, 1};
+        var bubbleSortedList = new List<int>() {7, 6, 5, 4, 3, 2, 1};
+
+        list.Sort();
+        bubbleSortedList.BubbleSort();
+        Assert.That(bubbleSortedList, Is.EqualTo(list));
     }
 }
