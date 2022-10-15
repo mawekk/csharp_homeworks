@@ -11,6 +11,6 @@ jobs:
         with:
           dotnet-version: '6.x'
       - name: Build
-        run: dotnet build
+        run: For /R %I in (*.sln) do dotnet build %I
       - name: Run tests
-        run: dotnet test
+        run: For /R %I in (*.sln) do dotnet test %I
