@@ -20,11 +20,26 @@ public static class Bwt
                 result += text[suffixArray[i] - 1];
             }
             
-            Console.WriteLine(suffixArray[i]);
+            Console.WriteLine(suffixArray);
         }
         return (result, endPosition);
     }
+    
+    public static string Retransform(string text, int endPosition)
+    {
+        var result = "";
+        var transformationArray =
+            text.Select((symbol, index) => (symbol, index)).OrderBy(pair => pair.symbol).ToArray();
 
+        foreach (var _ in text)
+        {
+            result += text[transformationArray[endPosition].index];
+            endPosition = transformationArray[endPosition].index;
+        }
+        
+        return result;
+    }
+    
     private static IEnumerable<int> ConstructSuffixArray(string text)
     {
         var suffixArray = new List<int>();
