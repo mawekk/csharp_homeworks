@@ -2,29 +2,40 @@
 
 public class ThreadSafePriorityQueue<P, V > where P : IComparable<P>
 {
-    private readonly SortedList<P, V> list = new();
+    private readonly SortedDictionary<P, List<V>> queue = new();
     private int count = 0;
-    private readonly object listLock = new();
+    private readonly object queueLock = new();
 
     public void Enqueue(P priority, V value)
     {
-        lock (listLock)
+        lock (queueLock)
         {
-            list.Add(priority, value);
+            if (queue.ContainsKey(priority) != true)
+            {
+                var list = new List<V>();
+                queue.Add(priority, list);
+            }
+            queue[priority].Add(value);
             count++;
-            Monitor.PulseAll(listLock);
+            Monitor.PulseAll(queueLock);
         }
     }
 
     public V Dequeue()
     {
-        lock (listLock)
+        lock (queueLock)
         {
-            if (list.Count == 0) Monitor.Wait(listLock);
+            if (queue.Count == 0) Monitor.Wait(queueLock);
 
-            var element = list.Values.Last();
-            list.RemoveAt(list.Count - 1);
+            var key = queue.Keys.Last();
+            var element = queue[key].First();
+            queue[key].RemoveAt(0);
             count--;
+
+            if (queue[key].Count == 0)
+            {
+                queue.Remove(key);
+            }
 
             return element;
         }
