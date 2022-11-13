@@ -13,4 +13,4 @@ jobs:
       - name: Build
         run: foreach($file in (dir -Path ./ -Filter *.sln -Recurse | %{$_.FullName})) { dotnet build $file }
       - name: Run tests
-        run: foreach($file in (dir -Path ./ -Filter *.sln -Recurse | %{$_.FullName})) { dotnet test $file 
+        run: foreach($file in (dir -Path ./ -Filter *.sln -Recurse | %{$_.FullName})) { dotnet test $file }
