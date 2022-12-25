@@ -1,0 +1,32 @@
+﻿@page
+@model Grades.Pages.AddGrade
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Выставление оценочки</title>
+</head>
+<body>
+    <form asp-action="AddGrade" method="post">
+        <p>
+            <label asp-for="StudentGrade.Name">Имя студента:</label>
+            <input asp-for="StudentGrade.Name" />
+        </p>
+        <p>
+            <label asp-for="StudentGrade.Subject">Предмет:</label>
+            <input asp-for="StudentGrade.Subject" />
+        </p>
+        <p>
+            <label asp-for="StudentGrade.Grade">Оценка:</label>
+            <input asp-for="StudentGrade.Grade" />
+        </p>
+        <button type="submit">Готово</button>
+    </form>
+</body>
+</html>
