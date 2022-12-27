@@ -1,0 +1,51 @@
+﻿@page
+@model Grades.Pages.AddGrade
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Выставление оценочки</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+<div class="row mb-3 text-center"><h4 class="col-sm-6">Выставляем оценочку</h4></div>
+<form method="post">
+    <div class="row mb-3">
+        <span asp-validation-for="StudentGrade.Name" class="text-danger"></span>
+        <label class="col-sm-1 col-form-label col-form-label-lg" asp-for="StudentGrade.Name">Имя студента:</label>
+        <div class="col-sm-4">
+            <input class="form-control form-control-lg" asp-for="StudentGrade.Name"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <span asp-validation-for="StudentGrade.Subject" class="text-danger"></span>
+        <label class="col-sm-1 col-form-label col-form-label-lg" asp-for="StudentGrade.Subject">Предмет:</label>
+        <div class="col-sm-4">
+            <input class="form-control form-control-lg" asp-for="StudentGrade.Subject"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <span asp-validation-for="StudentGrade.Grade" class="text-danger"></span>
+        <label class="col-sm-1 col-form-label col-form-label-lg" asp-for="StudentGrade.Grade">Оценка:</label>
+        <div class="col-sm-4">
+            <input class="form-control form-control-lg" asp-for="StudentGrade.Grade"/>
+        </div>
+    </div>
+        <div class="row mb-3 mx-auto">
+            <div class="col-sm-5 d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="submit">Готово</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

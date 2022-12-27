@@ -1,0 +1,24 @@
+﻿@page
+@model Grades.Pages.Index
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Оценочки</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body>
+<div class="text-center">
+    <h3>Тут можно ставить и смотреть оценочки</h3>
+    <a class="btn btn-primary mt-5 w-25" asp-page="AddGrade">Выставить оценочку</a>
+    <a class="btn btn-primary mt-5 w-25" asp-page="GradesTable">Посмотреть оценочки</a>
+</div>
+</body>
+</html>
